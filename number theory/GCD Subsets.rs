@@ -1,7 +1,7 @@
 /*
  * Author: Thiago Felipe Bastos da Silva
  * Created: 2025-12-28
- * Description: Given a array with numbers not greater than n, the below algorithm
+ * Description: Given an array with numbers not greater than n, the below algorithm
  * find the count of non-empty subsets whose gcd is equal to k for each k = 1, ..., n.
  */
 
