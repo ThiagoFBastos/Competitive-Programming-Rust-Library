@@ -1,7 +1,7 @@
 /*
  * Author: Thiago Felipe Bastos da Silva
  * Created: 2025-12-28
- * Description: Given a tree, the below algorithm find the diameter of a tree.
+ * Description: Given a tree, the algorithm below finds the diameter of the tree.
  */
 
  /**
