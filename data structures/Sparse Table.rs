@@ -18,6 +18,7 @@ mod data_structures {
          /**
           * Create a new instance of SparseTable
           * @param values an array with the elements used by the data structure
+          * @param op the binary function to calculate the result of an operation
           * a new SparseTable 
           */
          pub fn new(values: &[T], op: OP) -> Self {
