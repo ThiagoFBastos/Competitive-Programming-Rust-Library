@@ -9,7 +9,7 @@
   * find de count of subsets that are equal to k = 1, ..., n
   * @param values the array with numbers, being that 1 <= values_i <= n
   */
-fn count_gcd_subsets<const MOD: i64>(values: &[i32]) -> Vec<i64> {
+pub fn count_gcd_subsets<const MOD: i64>(values: &[i32]) -> Vec<i64> {
    let n = values.len();
 
    let mut dp = vec![0; n + 1];
@@ -45,6 +45,8 @@ fn count_gcd_subsets<const MOD: i64>(values: &[i32]) -> Vec<i64> {
          }
       }
    }
+
+   dp.remove(0);
 
    return dp;
 }
