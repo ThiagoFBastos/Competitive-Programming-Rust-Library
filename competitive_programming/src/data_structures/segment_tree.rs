@@ -5,27 +5,25 @@
  */
 
 // Trait for initial value
-trait Constants {
+pub trait Constants {
    fn initial() -> Self;
 }
 
 #[derive(Clone)]
-struct SegTree<T, OP> where OP: Fn(T, T) -> T
-{
+pub struct SegTree<T, OP> where OP: Fn(T, T) -> T {
    data: Vec<T>, // the segment tree data
    length: usize, // the number of elements 
    op: OP // the binary operator
 }
 
-impl<T: Constants + Copy, OP> SegTree<T, OP> where OP: Fn(T, T) -> T
-{
+impl<T: Constants + Copy, OP> SegTree<T, OP> where OP: Fn(T, T) -> T {
 
     /**
      * Create a new instance of SegTree
      * @param values the initial array
      * @param op the binary operator to calculate the values
      */
-   fn new(values: &[T], op: OP) -> Self {
+   pub fn new(values: &[T], op: OP) -> Self {
 
       let n = values.len();
       let mut data = vec![T::initial(); 2 * n];
@@ -51,7 +49,7 @@ impl<T: Constants + Copy, OP> SegTree<T, OP> where OP: Fn(T, T) -> T
     * @param r the rightmost position of the interval
     * @return the query answer of the values inside of the interval [l, r]
     */
-   fn query(&self, mut l: usize, mut r: usize) -> T {
+   pub fn query(&self, mut l: usize, mut r: usize) -> T {
       let mut answer = T::initial();
 
       assert!(l <= r && r < self.length);
@@ -83,7 +81,7 @@ impl<T: Constants + Copy, OP> SegTree<T, OP> where OP: Fn(T, T) -> T
     * @param k the position to change the value
     * @param value the value that will be replaced at position k
     */
-   fn update(&mut self, mut k: usize, value: T) {
+   pub fn update(&mut self, mut k: usize, value: T) {
 
       assert!(k < self.length);
 
