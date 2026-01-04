@@ -9,7 +9,7 @@
   * @param str the target string
   * @return an array containing the result of KMP algorithm
   */
-fn kmp(str: &String) -> Vec<usize> {
+pub fn kmp(str: &String) -> Vec<usize> {
 
    let chars = str.chars().collect::<Vec<_>>();
 
