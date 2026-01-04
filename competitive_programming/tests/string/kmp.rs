@@ -33,7 +33,7 @@ mod kmp_tests {
     }
 
     #[test]
-    fn test_simple_pattern_math_without_any_match() {
+    fn test_simple_pattern_match_without_any_match() {
         let s = String::from("abc");
         let t = String::from("cba");
 
