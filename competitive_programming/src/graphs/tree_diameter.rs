@@ -4,12 +4,14 @@
  * Description: Given a tree, the algorithm below finds the diameter of the tree.
  */
 
+ use std::collections::VecDeque;
+ 
  /**
   * find the diameter of a given tree
   * @param adj the adjacency list of the tree
   * @return the diameter
   */
-fn diameter(adj: &Vec<Vec<usize>>) -> usize {
+pub fn diameter(adj: &Vec<Vec<usize>>) -> usize {
    let n = adj.len();
  
    let mut deg = vec![0; n];
