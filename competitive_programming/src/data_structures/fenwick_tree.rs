@@ -4,13 +4,13 @@
  * Description: Simple Fenwick Tree data structure agnostic to operations.
  */
 
-trait Constants {
+pub trait Constants {
 
    fn initial() -> Self; // the initial constant
 }
 
 #[derive(Clone)]
-struct FenwickTree<T, OP> {
+pub struct FenwickTree<T, OP> {
    data: Vec<T>, // the fenwick tree data
    length: usize, // the number of elements of the fenwick tree
    op: OP // the binary operator to apply an operation in the fenwick tree
@@ -24,7 +24,7 @@ impl<T: Constants + Copy, OP: Fn(T, T) -> T> FenwickTree<T, OP> {
      * @param op the binary function that handles with operations
      * @return the new instance of FenwickTree
      */
-   fn new(length: usize, op: OP) -> Self {
+   pub fn new(length: usize, op: OP) -> Self {
 
       Self {
          data: vec![T::initial(); length + 1],
@@ -37,7 +37,7 @@ impl<T: Constants + Copy, OP: Fn(T, T) -> T> FenwickTree<T, OP> {
     * find the result of an operation of first k elements
     * @param k the number of the first elements for which we want to find the result
     */
-   fn query(&self, mut k: i32) -> T {
+   pub fn query(&self, mut k: i32) -> T {
       let mut result = T::initial();
 
       assert!(k <= self.length as i32);
@@ -55,7 +55,7 @@ impl<T: Constants + Copy, OP: Fn(T, T) -> T> FenwickTree<T, OP> {
     * @param k the position for which we want to modify
     * @param value the value for which we want to apply
     */
-   fn update(&mut self, mut k: i32, value: T) {
+   pub fn update(&mut self, mut k: i32, value: T) {
 
       assert!(k > 0);
 
