@@ -1,3 +1,10 @@
+/**
+ * @brief binary exponentiation
+ * @param n the number to calculate the power
+ * @param p the exponent
+ * @param m the modulo
+ * @return n^p mod m
+ */
 fn bin_exp(n: i128, p: i128, m: i128) -> i128 {
    if p == 0 {
       return 1;
@@ -14,6 +21,11 @@ fn bin_exp(n: i128, p: i128, m: i128) -> i128 {
    return res;
 }
 
+/**
+ * Miller-Rabin algorithm to check primes 
+ * @param n the number to check if is prime or not
+ * @return a boolean that is true if n is prime and false otherwise
+ */
 pub fn is_prime(n: i64) -> bool {
    let primes: [i64; 9] = [2, 3, 5, 7, 11, 13, 17, 19, 23];
 
