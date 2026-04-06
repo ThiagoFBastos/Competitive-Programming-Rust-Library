@@ -2,7 +2,7 @@
 
 #[cfg(test)]
 mod miller_rabin_tests {
-    use competitive_programming::math::number_theory::miller_rabin::*;
+    use competitive_programming::math::number_theory::is_prime;
 
     #[test]
     fn test_prime_numbers() {

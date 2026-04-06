@@ -1,7 +1,7 @@
 
 #[cfg(test)]
 mod mod_number_tests {
-    use competitive_programming::math::mod_number::ModNumber;
+    use competitive_programming::math::ModNumber;
 
     #[test]
     fn test_constructor_with_negative_one() {

@@ -2,7 +2,7 @@
 
 #[cfg(test)]
 mod gcd_subsets_tests {
-    use competitive_programming::math::number_theory::gcd_subsets::count_gcd_subsets;
+    use competitive_programming::math::number_theory::count_gcd_subsets;
 
 
     #[test]
