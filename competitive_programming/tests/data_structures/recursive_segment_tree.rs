@@ -1,6 +1,6 @@
 #[cfg(test)]
 mod segment_tree_tests {
-    use competitive_programming::data_structures::recursive_segment_tree::*;
+    use competitive_programming::data_structures::RecursiveSegTree;
 
     #[test]
     fn test_min_value_in_interval() {
@@ -8,7 +8,7 @@ mod segment_tree_tests {
 
         let values = [1, 2, 3, -1, 4, 5];
 
-        let mut st = SegTree::new(&values, operation);
+        let mut st = RecursiveSegTree::new(&values, operation);
 
         assert_eq!(st.query(0, 2), 1);
         assert_eq!(st.query(1, 3), -1);
@@ -28,7 +28,7 @@ mod segment_tree_tests {
 
         let values = [9, 1, 4, 3, 5];
 
-        let mut st = SegTree::new(&values, operation);
+        let mut st = RecursiveSegTree::new(&values, operation);
 
         assert_eq!(st.query(0, 1), 10);
         assert_eq!(st.query(2, 3), 7);
