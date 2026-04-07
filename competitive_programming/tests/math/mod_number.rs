@@ -1,4 +1,3 @@
-
 #[cfg(test)]
 mod mod_number_tests {
     use competitive_programming::math::ModNumber;
@@ -21,7 +20,7 @@ mod mod_number_tests {
         assert_eq!(number.value(), 0);
     }
 
-     #[test]
+    #[test]
     fn test_constructor_with_large_negative() {
         const MOD: i64 = 1_000_000_007;
 

@@ -1,7 +1,6 @@
-
 #[cfg(test)]
 mod z_function_tests {
-    use competitive_programming::string::z_function::*;
+    use competitive_programming::string::z_function;
 
     #[test]
     fn test_yosupo_sample_test_case_1() {

@@ -1,5 +1,3 @@
-
-
 #[cfg(test)]
 mod miller_rabin_tests {
     use competitive_programming::math::number_theory::is_prime;

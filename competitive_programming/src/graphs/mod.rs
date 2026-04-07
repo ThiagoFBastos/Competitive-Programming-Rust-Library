@@ -1,1 +1,3 @@
-pub mod tree_diameter;
+mod tree_diameter;
+
+pub use tree_diameter::diameter;

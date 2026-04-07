@@ -1,12 +1,10 @@
-
 #[cfg(test)]
 mod kmp_tests {
 
-    use competitive_programming::string::kmp::kmp;
+    use competitive_programming::string::kmp;
 
     #[test]
     fn test_simple_match() {
-        
         let s = String::from("abc");
         let t = String::from("xyzabc");
 
