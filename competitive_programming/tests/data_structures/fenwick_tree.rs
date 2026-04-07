@@ -1,6 +1,6 @@
 #[cfg(test)]
 mod fenwick_tree_tests {
-    use competitive_programming::data_structures::fenwick_tree::*;
+    use competitive_programming::data_structures::{FenwickTree, FenwickTreeConstants};
 
     #[test]
     fn test_sum_operations() {
@@ -9,7 +9,7 @@ mod fenwick_tree_tests {
         #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Debug)]
         struct Int32(i32);
 
-        impl Constants for Int32 {
+        impl FenwickTreeConstants for Int32 {
             fn initial() -> Self {
                 Int32(0)
             }
@@ -41,7 +41,7 @@ mod fenwick_tree_tests {
         #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Debug)]
         struct Int32(i32);
 
-        impl Constants for Int32 {
+        impl FenwickTreeConstants for Int32 {
             fn initial() -> Self {
                 Int32(i32::MIN)
             }

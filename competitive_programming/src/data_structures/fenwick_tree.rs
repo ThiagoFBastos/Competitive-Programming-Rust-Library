@@ -4,7 +4,7 @@
  * Description: Simple Fenwick Tree data structure agnostic to operations.
  */
 
-pub trait Constants {
+pub trait FenwickTreeConstants {
     fn initial() -> Self; // the initial constant
 }
 
@@ -15,7 +15,7 @@ pub struct FenwickTree<T, OP> {
     op: OP,        // the binary operator to apply an operation in the fenwick tree
 }
 
-impl<T: Constants + Copy, OP: Fn(T, T) -> T> FenwickTree<T, OP> {
+impl<T: FenwickTreeConstants + Copy, OP: Fn(T, T) -> T> FenwickTree<T, OP> {
     /**
      * create a new instance of FenwickTree
      * @param length the number of elements of the Fenwick Tree
