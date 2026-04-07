@@ -1,4 +1,3 @@
-
 #[cfg(test)]
 mod z_function_tests {
     use competitive_programming::string::z_function::*;

@@ -1,16 +1,14 @@
-
 #[cfg(test)]
 mod tree_diameter_tests {
     use competitive_programming::graphs::tree_diameter::diameter;
 
-    fn add_edge(adj: &mut Vec<Vec<usize>>, u: usize, v: usize) {
+    fn add_edge(adj: &mut [Vec<usize>], u: usize, v: usize) {
         adj[u].push(v);
         adj[v].push(u);
     }
 
     #[test]
-    fn test_small_tree()
-    {
+    fn test_small_tree() {
         const N: usize = 5;
 
         let mut adj = vec![vec![]; N];
@@ -41,7 +39,7 @@ mod tree_diameter_tests {
 
     #[test]
     fn test_trivial_tree() {
-         const N: usize = 1;
+        const N: usize = 1;
 
         let adj: Vec<Vec<usize>> = vec![vec![]; N];
 

@@ -1,4 +1,3 @@
-
 #[cfg(test)]
 mod manacher_tests {
     use competitive_programming::string::manacher::*;
@@ -84,7 +83,6 @@ mod manacher_tests {
         assert_eq!(len, 7);
     }
 
-    
     #[test]
     fn test_cses_sample_test_case_6() {
         let str = String::from("aaccaabbaaccaaccaabbaaccaa");
@@ -128,5 +126,5 @@ mod manacher_tests {
         let len = manacher(&str);
 
         assert_eq!(len, str.len());
-    }    
+    }
 }

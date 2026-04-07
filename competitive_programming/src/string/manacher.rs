@@ -9,7 +9,7 @@
  * @param s the target string
  * @return the size of the largest palindrome substring
  */
-pub fn manacher(s: &String) -> usize {
+pub fn manacher(s: &str) -> usize {
     let n = s.len();
     let str = s.chars().collect::<Vec<_>>();
 
@@ -21,7 +21,6 @@ pub fn manacher(s: &String) -> usize {
     let mut len = 0;
 
     for i in 0..n {
-
         if i as i32 <= r {
             d1[i] = d1[l + r as usize - i].min(r as usize + 1 - i);
             d2[i] = d2[l + r as usize + 1 - i].min(r as usize + 1 - i);
@@ -31,7 +30,7 @@ pub fn manacher(s: &String) -> usize {
             d1[i] += 1;
         }
 
-        while i + d2[i] < n && i >= d2[i] + 1 && str[i - d2[i] - 1] == str[i + d2[i]] {
+        while i + d2[i] < n && i > d2[i] && str[i - d2[i] - 1] == str[i + d2[i]] {
             d2[i] += 1;
         }
 
@@ -45,7 +44,6 @@ pub fn manacher(s: &String) -> usize {
             r = i as i32 + d1[i] as i32 - 1;
         }
 
-        
         len = len.max(r as usize + 1 - l);
     }
 

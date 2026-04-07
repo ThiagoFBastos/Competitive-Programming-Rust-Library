@@ -8,11 +8,10 @@ use std::ops::{Add, AddAssign, Div, DivAssign, Mul, MulAssign, Neg, Sub, SubAssi
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub struct ModNumber<const MOD: i64> {
-    number: i64 // number (mod MOD)
+    number: i64, // number (mod MOD)
 }
 
 impl<const MOD: i64> ModNumber<MOD> {
-
     /**
      * Create a new instance of ModNumber
      * @param initial the value that will be stored
@@ -30,9 +29,7 @@ impl<const MOD: i64> ModNumber<MOD> {
             initial += MOD;
         }
 
-        Self {
-            number: initial
-        }
+        Self { number: initial }
     }
 
     /**
@@ -44,15 +41,14 @@ impl<const MOD: i64> ModNumber<MOD> {
 
     /**
      *  Return the stored number raised to the power of n
-     */  
+     */
     pub fn pow(&self, mut n: u64) -> Self {
         let mut result = Self::new(1);
-        let mut number = self.clone();
+        let mut number = *self;
 
         while n > 0 {
-
             if n & 1 == 1 {
-            result = result * number;
+                result *= number;
             }
 
             number = number * number;
@@ -94,23 +90,24 @@ impl<const MOD: i64> Sub for ModNumber<MOD> {
     }
 }
 
-// operator *  
+// operator *
 impl<const MOD: i64> Mul for ModNumber<MOD> {
     type Output = Self;
 
     fn mul(self, rhs: Self) -> Self::Output {
-
         let result = self.number.checked_mul(rhs.number);
 
         if result.is_none() {
-            return ModNumber::new(((self.number as i128 * rhs.number as i128) % MOD as i128) as i64);
+            return ModNumber::new(
+                ((self.number as i128 * rhs.number as i128) % MOD as i128) as i64,
+            );
         }
 
         ModNumber::new(result.unwrap() % MOD)
     }
 }
 
-// operator /   
+// operator /
 impl<const MOD: i64> Div for ModNumber<MOD> {
     type Output = Self;
 
@@ -136,15 +133,13 @@ impl<const MOD: i64> Neg for ModNumber<MOD> {
 
 // operator +=
 impl<const MOD: i64> AddAssign for ModNumber<MOD> {
-
     fn add_assign(&mut self, rhs: Self) {
         *self = *self + rhs;
     }
 }
 
 // operator -=
-impl<const MOD: i64> SubAssign for ModNumber<MOD> {   
-
+impl<const MOD: i64> SubAssign for ModNumber<MOD> {
     fn sub_assign(&mut self, rhs: Self) {
         *self = *self - rhs;
     }
@@ -152,7 +147,6 @@ impl<const MOD: i64> SubAssign for ModNumber<MOD> {
 
 // operator *=
 impl<const MOD: i64> MulAssign for ModNumber<MOD> {
-
     fn mul_assign(&mut self, rhs: Self) {
         *self = *self * rhs;
     }
@@ -160,7 +154,6 @@ impl<const MOD: i64> MulAssign for ModNumber<MOD> {
 
 // operator /=
 impl<const MOD: i64> DivAssign for ModNumber<MOD> {
-
     fn div_assign(&mut self, rhs: Self) {
         *self = *self / rhs;
     }

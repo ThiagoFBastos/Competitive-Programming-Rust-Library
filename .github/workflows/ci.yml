@@ -1,0 +1,39 @@
+name: Rust CI
+
+on:
+  push:
+    branches:
+      - '**'
+  pull_request:
+
+jobs:
+  build-test-lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Instalar Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy, rustfmt
+
+      - name: Cache de dependências
+        uses: Swatinem/rust-cache@v2
+
+      - name: Check de formatação (rustfmt)
+        working-directory: competitive_programming
+        run: cargo fmt --all -- --check
+
+      - name: Lint (clippy)
+        working-directory: competitive_programming
+        run: cargo clippy --all-targets --all-features -- -D warnings
+
+      - name: Build
+        working-directory: competitive_programming
+        run: cargo build --all-targets
+
+      - name: Rodar testes
+        working-directory: competitive_programming
+        run: cargo test --all

@@ -11,13 +11,11 @@ mod fenwick_tree_tests {
 
         impl Constants for Int32 {
             fn initial() -> Self {
-                return Int32(0);
+                Int32(0)
             }
         }
 
-        let sum = |a: Int32, b: Int32| {
-            return Int32(a.0 + b.0);
-        };
+        let sum = |a: Int32, b: Int32| Int32(a.0 + b.0);
 
         let mut ft = FenwickTree::new(N, sum);
 
@@ -28,7 +26,10 @@ mod fenwick_tree_tests {
         for i in 1..=N {
             for j in i..=N {
                 let sum = (i + j) * (j - i + 1) / 2;
-                assert_eq!(Int32(ft.query(j as i32).0 - ft.query(i as i32 - 1).0), Int32(sum as i32));
+                assert_eq!(
+                    Int32(ft.query(j as i32).0 - ft.query(i as i32 - 1).0),
+                    Int32(sum as i32)
+                );
             }
         }
     }
@@ -42,13 +43,11 @@ mod fenwick_tree_tests {
 
         impl Constants for Int32 {
             fn initial() -> Self {
-                return Int32(i32::MIN);
+                Int32(i32::MIN)
             }
         }
 
-        let max = |a: Int32, b: Int32| {
-            return Int32(a.0.max(b.0));
-        };
+        let max = |a: Int32, b: Int32| Int32(a.0.max(b.0));
 
         let mut ft = FenwickTree::new(N, max);
 
