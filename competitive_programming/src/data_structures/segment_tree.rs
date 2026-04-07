@@ -5,7 +5,7 @@
  */
 
 // Trait for initial value
-pub trait Constants {
+pub trait SegTreeConstants {
     fn initial() -> Self;
 }
 
@@ -19,7 +19,7 @@ where
     op: OP,        // the binary operator
 }
 
-impl<T: Constants + Copy, OP> SegTree<T, OP>
+impl<T: SegTreeConstants + Copy, OP> SegTree<T, OP>
 where
     OP: Fn(T, T) -> T,
 {

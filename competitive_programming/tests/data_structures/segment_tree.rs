@@ -1,13 +1,13 @@
 #[cfg(test)]
 mod segment_tree_tests {
-    use competitive_programming::data_structures::segment_tree::*;
+    use competitive_programming::data_structures::{SegTree, SegTreeConstants};
 
     #[test]
     fn test_min_value_in_interval() {
         #[derive(Clone, Copy, PartialEq, PartialOrd, Debug)]
         struct Int32(i32);
 
-        impl Constants for Int32 {
+        impl SegTreeConstants for Int32 {
             fn initial() -> Self {
                 Int32(i32::MAX)
             }
@@ -39,7 +39,7 @@ mod segment_tree_tests {
         #[derive(Clone, Copy, PartialEq, PartialOrd, Debug)]
         struct Int32(i32);
 
-        impl Constants for Int32 {
+        impl SegTreeConstants for Int32 {
             fn initial() -> Self {
                 Int32(0)
             }
