@@ -1,6 +1,6 @@
 #[cfg(test)]
 mod manacher_tests {
-    use competitive_programming::string::manacher::*;
+    use competitive_programming::string::manacher;
 
     #[test]
     fn test_yosupo_sample_test_case_1() {

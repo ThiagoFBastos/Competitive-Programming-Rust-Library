@@ -1,7 +1,7 @@
 #[cfg(test)]
 mod kmp_tests {
 
-    use competitive_programming::string::kmp::kmp;
+    use competitive_programming::string::kmp;
 
     #[test]
     fn test_simple_match() {

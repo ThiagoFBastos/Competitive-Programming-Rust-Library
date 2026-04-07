@@ -1,6 +1,6 @@
 #[cfg(test)]
 mod tree_diameter_tests {
-    use competitive_programming::graphs::tree_diameter::diameter;
+    use competitive_programming::graphs::diameter;
 
     fn add_edge(adj: &mut [Vec<usize>], u: usize, v: usize) {
         adj[u].push(v);

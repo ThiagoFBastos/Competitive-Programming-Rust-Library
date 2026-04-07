@@ -1,6 +1,6 @@
 #[cfg(test)]
 mod union_find_tests {
-    use competitive_programming::data_structures::union_find::*;
+    use competitive_programming::data_structures::DisjointSet;
 
     #[test]
     fn test_tree_star() {
