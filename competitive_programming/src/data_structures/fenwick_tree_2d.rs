@@ -1,29 +1,23 @@
-/*
- * Author: Thiago Felipe Bastos da Silva
- * Created: 2025-12-28
- * Description: Simple Fenwick Tree 2D data structure for sum operations.
- */
+use std::ops::{Add, AddAssign, Sub};
 
-struct FenwickTree2D<T> {
+pub struct FenwickTree2D<T> {
     data: Vec<Vec<T>>,
-    rows: usize,
-    columns: usize
+    pub rows: usize,
+    pub columns: usize,
 }
 
 impl<T: Default + Copy + AddAssign + Sub<Output = T> + Add<Output = T>> FenwickTree2D<T> {
-
     /**
      * create a new instance of FenwickTree2D
      * @param rows the number of rows of the matrix
      * @param columns the number of columns of the matrix
      * @return a new FenwickTree2D
      */
-    fn new(rows: usize, columns: usize) -> Self {
-
+    pub fn new(rows: usize, columns: usize) -> Self {
         Self {
-            data: vec![vec![T::default(); columns + 1]; rows + 1], 
-            rows: rows, 
-            columns: columns
+            data: vec![vec![T::default(); columns + 1]; rows + 1],
+            rows,
+            columns,
         }
     }
 
@@ -49,14 +43,15 @@ impl<T: Default + Copy + AddAssign + Sub<Output = T> + Add<Output = T>> FenwickT
             x -= x & -x;
         }
 
-        return answer;
+        answer
     }
 
     /**
      * calculate the sum of all values inside the submatrix (x0, y0) x (x1, y1)
      */
-    fn calculate(&self, x0: i32, y0: i32, x1: i32, y1: i32) -> T {
-        return self.query(x1, y1) - self.query(x1, y0 - 1) - self.query(x0 - 1, y1) + self.query(x0 - 1, y0 - 1);
+    pub fn calculate(&self, x0: i32, y0: i32, x1: i32, y1: i32) -> T {
+        self.query(x1, y1) - self.query(x1, y0 - 1) - self.query(x0 - 1, y1)
+            + self.query(x0 - 1, y0 - 1)
     }
 
     /**
@@ -65,12 +60,11 @@ impl<T: Default + Copy + AddAssign + Sub<Output = T> + Add<Output = T>> FenwickT
      * @param y the column position of the matrix
      * @param value the number that will be added to position (x, y)
      */
-    fn update(&mut self, mut x: i32, mut y: i32, value: T) {
+    pub fn update(&mut self, mut x: i32, mut y: i32, value: T) {
         x += 1;
         y += 1;
 
         while x as usize <= self.rows {
-
             let mut k = y;
 
             while k as usize <= self.columns {
