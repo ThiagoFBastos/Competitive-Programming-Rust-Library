@@ -1,3 +1,4 @@
+#[derive(Clone)]
 pub struct SparseTable<T, OP>
 where
     OP: Fn(T, T) -> T,

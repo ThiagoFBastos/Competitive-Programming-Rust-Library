@@ -1,9 +1,3 @@
-/*
- * Author: Thiago Felipe Bastos da Silva
- * Created: 2026-01-24
- * Description: This function implements the Manacher Algorithm that finds the largest palindrome substring in a string
- */
-
 /**
  * Find the largest palindrome substring size
  * @param s the target string

@@ -1,9 +1,3 @@
-/*
- * Author: Thiago Felipe Bastos da Silva
- * Created: 2025-12-28
- * Description: Given a tree, the algorithm below finds the diameter of the tree.
- */
-
 use std::collections::VecDeque;
 
 /**

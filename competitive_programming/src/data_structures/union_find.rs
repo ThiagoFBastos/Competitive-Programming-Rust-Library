@@ -1,12 +1,8 @@
 /*
- * Author: Thiago Felipe Bastos da Silva
- * Created: 2025-12-28
- * Description: Simple implementation of Union Find data structure.
- */
-
-/*
   Simple Disjoint Set/Union Find with rank and path compression
 */
+
+#[derive(Clone)]
 pub struct DisjointSet {
     parent: Vec<usize>, // the parent of each vertex
     rank: Vec<u32>,     // the rank of the disjoint set

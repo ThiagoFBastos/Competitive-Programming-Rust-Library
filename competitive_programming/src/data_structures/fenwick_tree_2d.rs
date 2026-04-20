@@ -1,9 +1,10 @@
 use std::ops::{Add, AddAssign, Sub};
 
+#[derive(Clone)]
 pub struct FenwickTree2D<T> {
-    data: Vec<Vec<T>>,
-    pub rows: usize,
-    pub columns: usize,
+    data: Vec<Vec<T>>,  // the fenwick tree data
+    pub rows: usize,    // the number of rows
+    pub columns: usize, // the number of columns
 }
 
 impl<T: Default + Copy + AddAssign + Sub<Output = T> + Add<Output = T>> FenwickTree2D<T> {

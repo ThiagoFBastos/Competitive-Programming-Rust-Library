@@ -1,9 +1,3 @@
-/*
- * Author: Thiago Felipe Bastos da Silva
- * Created: 2025-12-29
- * Description: Simple iterative segment tree agnostic to operations.
- */
-
 // Trait for initial value
 pub trait SegTreeConstants {
     fn initial() -> Self;
@@ -14,9 +8,9 @@ pub struct SegTree<T, OP>
 where
     OP: Fn(T, T) -> T,
 {
-    data: Vec<T>,  // the segment tree data
-    length: usize, // the number of elements
-    op: OP,        // the binary operator
+    data: Vec<T>,      // the segment tree data
+    pub length: usize, // the number of elements
+    op: OP,            // the binary operator
 }
 
 impl<T: SegTreeConstants + Copy, OP> SegTree<T, OP>

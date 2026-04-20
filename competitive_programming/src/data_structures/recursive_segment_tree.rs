@@ -1,16 +1,11 @@
-/*
- * Author: Thiago Felipe Bastos da Silva
- * Created: 2025-12-30
- * Description: Simple recursive segment tree agnostic to operations.
- */
-
+#[derive(Clone)]
 pub struct SegTree<T, OP>
 where
     OP: Fn(T, T) -> T,
 {
-    data: Vec<T>, // the segment tree data
-    size: usize,  // the number of elements
-    op: OP,       // the binary operator
+    data: Vec<T>,    // the segment tree data
+    pub size: usize, // the number of elements
+    op: OP,          // the binary operator
 }
 
 impl<T: Copy + Default, OP> SegTree<T, OP>

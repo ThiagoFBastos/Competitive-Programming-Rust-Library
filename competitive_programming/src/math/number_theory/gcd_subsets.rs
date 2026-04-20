@@ -1,10 +1,3 @@
-/*
- * Author: Thiago Felipe Bastos da Silva
- * Created: 2025-12-28
- * Description: Given an array with numbers not greater than n, the algorithm below
- * finds the count of non-empty subsets whose gcd is equal to k for each k = 1, ..., n.
- */
-
 /**
  * find de count of subsets that are equal to k = 1, ..., n
  * @param values the array with numbers, being that 1 <= values_i <= n

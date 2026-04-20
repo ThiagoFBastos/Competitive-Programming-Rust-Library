@@ -1,9 +1,3 @@
-/*
- * Author: Thiago Felipe Bastos da Silva
- * Created: 2026-01-24
- * Description: Implementation of Z Function algorithm.
- */
-
 /**
  * Given a string calculates its z-function
  * @param s the target string

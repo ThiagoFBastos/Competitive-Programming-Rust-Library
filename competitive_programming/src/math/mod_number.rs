@@ -1,9 +1,3 @@
-/*
- * Author: Thiago Felipe Bastos da Silva
- * Created: 2026-01-04
- * Description: Structure that encapsulates modulo operations
- */
-
 use std::ops::{Add, AddAssign, Div, DivAssign, Mul, MulAssign, Neg, Sub, SubAssign};
 
 #[derive(Clone, Copy, PartialEq, Eq)]

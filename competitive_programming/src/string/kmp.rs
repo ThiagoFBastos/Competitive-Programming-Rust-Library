@@ -1,9 +1,3 @@
-/*
- * Author: Thiago Felipe Bastos da Silva
- * Created: 2025-12-28
- * Description: The function below implements the KMP algorithm for a given string.
- */
-
 /**
  * KMP algorithm for strings
  * @param str the target string

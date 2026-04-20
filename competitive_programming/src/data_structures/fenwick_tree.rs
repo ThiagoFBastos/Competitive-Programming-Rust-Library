@@ -1,9 +1,3 @@
-/*
- * Author: Thiago Felipe Bastos da Silva
- * Created: 2025-12-28
- * Description: Simple Fenwick Tree data structure agnostic to operations.
- */
-
 pub trait FenwickTreeConstants {
     fn initial() -> Self; // the initial constant
 }
