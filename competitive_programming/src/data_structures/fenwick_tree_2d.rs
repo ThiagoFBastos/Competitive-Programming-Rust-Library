@@ -26,9 +26,8 @@ impl<T: Default + Copy + AddAssign + Sub<Output = T> + Add<Output = T>> FenwickT
      * @param x the row position of boundary of the submatrix
      * @param y the column position of boundary of the submatrix
      */
-    fn query(&self, mut x: i32, mut y: i32) -> T {
-        x += 1;
-        y += 1;
+    fn query(&self, mut x: usize, y: usize) -> T {
+        assert!(x <= self.rows && y <= self.columns);
 
         let mut answer = T::default();
 
@@ -36,11 +35,11 @@ impl<T: Default + Copy + AddAssign + Sub<Output = T> + Add<Output = T>> FenwickT
             let mut k = y;
 
             while k > 0 {
-                answer += self.data[x as usize][k as usize];
-                k -= k & -k;
+                answer += self.data[x][k];
+                k -= k & (!k + 1);
             }
 
-            x -= x & -x;
+            x -= x & (!x + 1);
         }
 
         answer
@@ -49,7 +48,7 @@ impl<T: Default + Copy + AddAssign + Sub<Output = T> + Add<Output = T>> FenwickT
     /**
      * calculate the sum of all values inside the submatrix (x0, y0) x (x1, y1)
      */
-    pub fn calculate(&self, x0: i32, y0: i32, x1: i32, y1: i32) -> T {
+    pub fn calculate(&self, x0: usize, y0: usize, x1: usize, y1: usize) -> T {
         self.query(x1, y1) - self.query(x1, y0 - 1) - self.query(x0 - 1, y1)
             + self.query(x0 - 1, y0 - 1)
     }
@@ -60,19 +59,18 @@ impl<T: Default + Copy + AddAssign + Sub<Output = T> + Add<Output = T>> FenwickT
      * @param y the column position of the matrix
      * @param value the number that will be added to position (x, y)
      */
-    pub fn update(&mut self, mut x: i32, mut y: i32, value: T) {
-        x += 1;
-        y += 1;
+    pub fn update(&mut self, mut x: usize, y: usize, value: T) {
+        assert!(x > 0 && y > 0);
 
-        while x as usize <= self.rows {
+        while x <= self.rows {
             let mut k = y;
 
-            while k as usize <= self.columns {
-                self.data[x as usize][k as usize] += value;
-                k += k & -k;
+            while k <= self.columns {
+                self.data[x][k] += value;
+                k += k & (!k + 1);
             }
 
-            x += x & -x;
+            x += x & (!x + 1);
         }
     }
 }
