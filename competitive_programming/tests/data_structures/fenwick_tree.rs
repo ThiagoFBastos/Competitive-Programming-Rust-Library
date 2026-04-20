@@ -20,16 +20,13 @@ mod fenwick_tree_tests {
         let mut ft = FenwickTree::new(N, sum);
 
         for i in 1..=N {
-            ft.update(i as i32, Int32(i as i32));
+            ft.update(i, Int32(i as i32));
         }
 
         for i in 1..=N {
             for j in i..=N {
                 let sum = (i + j) * (j - i + 1) / 2;
-                assert_eq!(
-                    Int32(ft.query(j as i32).0 - ft.query(i as i32 - 1).0),
-                    Int32(sum as i32)
-                );
+                assert_eq!(Int32(ft.query(j).0 - ft.query(i - 1).0), Int32(sum as i32));
             }
         }
     }
@@ -52,11 +49,11 @@ mod fenwick_tree_tests {
         let mut ft = FenwickTree::new(N, max);
 
         for i in 1..=N {
-            ft.update(i as i32, Int32(i as i32));
+            ft.update(i, Int32(i as i32));
         }
 
         for i in 1..=N {
-            assert_eq!(ft.query(i as i32), Int32(i as i32));
+            assert_eq!(ft.query(i), Int32(i as i32));
         }
     }
 }

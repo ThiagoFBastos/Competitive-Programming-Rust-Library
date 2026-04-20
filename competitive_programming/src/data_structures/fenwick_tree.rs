@@ -10,9 +10,9 @@ pub trait FenwickTreeConstants {
 
 #[derive(Clone)]
 pub struct FenwickTree<T, OP> {
-    data: Vec<T>,  // the fenwick tree data
-    length: usize, // the number of elements of the fenwick tree
-    op: OP,        // the binary operator to apply an operation in the fenwick tree
+    data: Vec<T>,      // the fenwick tree data
+    pub length: usize, // the number of elements of the fenwick tree
+    op: OP,            // the binary operator to apply an operation in the fenwick tree
 }
 
 impl<T: FenwickTreeConstants + Copy, OP: Fn(T, T) -> T> FenwickTree<T, OP> {
@@ -34,14 +34,14 @@ impl<T: FenwickTreeConstants + Copy, OP: Fn(T, T) -> T> FenwickTree<T, OP> {
      * find the result of an operation of first k elements
      * @param k the number of the first elements for which we want to find the result
      */
-    pub fn query(&self, mut k: i32) -> T {
+    pub fn query(&self, mut k: usize) -> T {
         let mut result = T::initial();
 
-        assert!(k <= self.length as i32);
+        assert!(k <= self.length);
 
         while k > 0 {
-            result = (self.op)(result, self.data[k as usize]);
-            k -= k & -k;
+            result = (self.op)(result, self.data[k]);
+            k -= k & (!k + 1);
         }
 
         result
@@ -52,12 +52,12 @@ impl<T: FenwickTreeConstants + Copy, OP: Fn(T, T) -> T> FenwickTree<T, OP> {
      * @param k the position for which we want to modify
      * @param value the value for which we want to apply
      */
-    pub fn update(&mut self, mut k: i32, value: T) {
+    pub fn update(&mut self, mut k: usize, value: T) {
         assert!(k > 0);
 
-        while k <= self.length as i32 {
-            self.data[k as usize] = (self.op)(self.data[k as usize], value);
-            k += k & -k;
+        while k <= self.length {
+            self.data[k] = (self.op)(self.data[k], value);
+            k += k & (!k + 1);
         }
     }
 }
