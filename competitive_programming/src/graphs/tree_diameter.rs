@@ -1,11 +1,8 @@
 use std::collections::VecDeque;
 
-/**
- * find the diameter of a given tree
- * @param adj the adjacency list of the tree
- * @return the diameter
- */
-pub fn diameter(adj: &[Vec<usize>]) -> usize {
+type Graph = Vec<Vec<usize>>;
+
+fn bfs(adj: &Graph) -> Vec<usize> {
     let n = adj.len();
 
     let mut deg = vec![0; n];
@@ -33,8 +30,40 @@ pub fn diameter(adj: &[Vec<usize>]) -> usize {
         }
     }
 
-    let &d = dist.iter().max().unwrap();
-    let count = dist.iter().filter(|&&x| x == d).count();
+    dist
+}
 
-    2 * d + count - 1
+/**
+ * Find the diameter of a given tree
+ * @param adj the adjacency list of the tree
+ * @return the diameter
+ */
+pub fn tree_diameter(adj: &Graph) -> usize {
+    assert_ne!(adj.len(), 0);
+
+    let dist = bfs(adj);
+
+    let e = *dist.iter().max().unwrap();
+    let count = dist.iter().filter(|&&x| x == e).count();
+
+    2 * e + count - 1
+}
+
+/**
+ * Find the center of a given tree
+ * @param adj the adjacency list of the tree
+ * @return the center
+ */
+pub fn tree_center(adj: &Graph) -> Vec<usize> {
+    assert_ne!(adj.len(), 0);
+
+    let dist = bfs(adj);
+
+    let e = *dist.iter().max().unwrap();
+
+    dist.iter()
+        .enumerate()
+        .filter(|&x| *x.1 == e)
+        .map(|x| x.0)
+        .collect::<Vec<_>>()
 }
