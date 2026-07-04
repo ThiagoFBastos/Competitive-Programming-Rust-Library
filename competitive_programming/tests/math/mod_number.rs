@@ -9,6 +9,7 @@ mod mod_number_tests {
         let number = ModNumber::<MOD>::new(-1);
 
         assert_eq!(number.value(), MOD - 1);
+        assert_eq!(ModNumber::<MOD>::MODULO, MOD);
     }
 
     #[test]

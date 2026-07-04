@@ -6,6 +6,8 @@ pub struct ModNumber<const MOD: i64> {
 }
 
 impl<const MOD: i64> ModNumber<MOD> {
+    pub const MODULO: i64 = MOD;
+
     /**
      * Create a new instance of ModNumber
      * @param initial the value that will be stored
