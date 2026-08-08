@@ -11,9 +11,7 @@ pub fn dijkstra(adj: &Graph, src: usize) -> Vec<Option<i64>> {
 
     pq.push(Reverse((0, src)));
 
-    while !pq.is_empty() {
-        let (cost, u) = pq.pop().unwrap().0;
-
+    while let Some(Reverse((cost, u))) = pq.pop() {
         if dist[u].is_some() {
             continue;
         }

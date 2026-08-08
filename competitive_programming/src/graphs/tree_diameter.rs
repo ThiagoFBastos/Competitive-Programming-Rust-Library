@@ -5,21 +5,11 @@ type Graph = Vec<Vec<usize>>;
 fn bfs(adj: &Graph) -> Vec<usize> {
     let n = adj.len();
 
-    let mut deg = vec![0; n];
+    let mut deg = (0..n).map(|v| adj[v].len()).collect::<Vec<_>>();
     let mut dist = vec![0; n];
-    let mut queue = VecDeque::new();
+    let mut queue = (0..n).filter(|&v| deg[v] == 1).collect::<VecDeque<_>>();
 
-    for i in 0..n {
-        deg[i] = adj[i].len();
-
-        if deg[i] == 1 {
-            queue.push_back(i);
-        }
-    }
-
-    while !queue.is_empty() {
-        let src = queue.pop_front().unwrap();
-
+    while let Some(src) = queue.pop_front() {
         for &dest in adj[src].iter() {
             deg[dest] -= 1;
 
