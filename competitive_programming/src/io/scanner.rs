@@ -1,4 +1,7 @@
-use std::{io::Read, marker::PhantomData};
+use std::{
+    io::{self, Error, Read},
+    marker::PhantomData,
+};
 
 pub struct Scanner<R> {
     buffer: Vec<u8>,
@@ -37,9 +40,9 @@ impl<R: Read> Scanner<R> {
      * @brief Read the next data from input
      */
     #[allow(clippy::should_implement_trait)]
-    pub fn next<T: std::str::FromStr>(&mut self) -> T {
+    pub fn next<T: std::str::FromStr>(&mut self) -> io::Result<T> {
         if !self.has_next() {
-            panic!("End Of File");
+            return Err(Error::new(io::ErrorKind::UnexpectedEof, "End Of File"));
         }
 
         let start = self.index;
@@ -48,10 +51,14 @@ impl<R: Read> Scanner<R> {
             self.index += 1;
         }
 
-        std::str::from_utf8(&self.buffer[start..self.index])
+        let res = std::str::from_utf8(&self.buffer[start..self.index])
             .unwrap()
-            .parse::<T>()
-            .ok()
-            .unwrap()
+            .parse::<T>();
+
+        if res.is_ok() {
+            return Ok(res.ok().unwrap());
+        }
+
+        Err(Error::new(io::ErrorKind::InvalidInput, "Invalid Input"))
     }
 }
