@@ -1,5 +1,7 @@
 #[cfg(test)]
 mod convex_hull_trick_tests {
+    use std::assert_eq;
+
     use competitive_programming::data_structures::*;
 
     fn value_of(function: (i64, i64), x: i64) -> i64 {
@@ -65,7 +67,7 @@ mod convex_hull_trick_tests {
         // Slopes: 3 > 2 > 1
         let functions = vec![(3, 0), (2, 5), (1, 10)];
 
-        let mut cht = ConvexHullTrick::<false>::new();
+        let mut cht = ConvexHullTrick::<false>::with_capacity(functions.len());
 
         for &f in &functions {
             cht.add(f);
@@ -78,6 +80,10 @@ mod convex_hull_trick_tests {
                 "wrong answer for x = {x}"
             );
         }
+
+        cht.clear();
+
+        assert_eq!(cht.evaluate(0), i64::MAX);
     }
 
     #[test]

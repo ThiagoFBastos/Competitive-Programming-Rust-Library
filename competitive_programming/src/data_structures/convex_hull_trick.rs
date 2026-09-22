@@ -69,6 +69,16 @@ impl<const IS_MAX_CHT: bool> ConvexHullTrick<IS_MAX_CHT> {
         }
     }
 
+    pub fn with_capacity(n: usize) -> Self {
+        Self {
+            cht: VecDeque::with_capacity(n),
+        }
+    }
+
+    pub fn clear(&mut self) {
+        self.cht.clear();
+    }
+
     /// Inserts `function` into the hull, popping from the back any
     /// functions that become redundant as a result (see [`overshadow`]).
     ///
