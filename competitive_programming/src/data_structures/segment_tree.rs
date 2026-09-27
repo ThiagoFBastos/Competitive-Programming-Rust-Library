@@ -46,7 +46,8 @@ where
      * @return the query answer of the values inside of the interval [l, r]
      */
     pub fn query(&self, mut l: usize, mut r: usize) -> T {
-        let mut answer = T::initial();
+        let mut answer_left = T::initial();
+        let mut answer_right = T::initial();
 
         assert!(l <= r && r < self.length);
 
@@ -55,12 +56,12 @@ where
 
         while l <= r {
             if l & 1 == 1 {
-                answer = (self.op)(answer, self.data[l]);
+                answer_left = (self.op)(answer_left, self.data[l]);
                 l += 1;
             }
 
             if r & 1 == 0 {
-                answer = (self.op)(answer, self.data[r]);
+                answer_right = (self.op)(self.data[r], answer_right);
                 r -= 1;
             }
 
@@ -68,7 +69,7 @@ where
             r >>= 1;
         }
 
-        answer
+        (self.op)(answer_left, answer_right)
     }
 
     /**
