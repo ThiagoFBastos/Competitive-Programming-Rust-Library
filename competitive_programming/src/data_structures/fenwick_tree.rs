@@ -55,3 +55,57 @@ impl<T: FenwickTreeConstants + Copy, OP: Fn(T, T) -> T> FenwickTree<T, OP> {
         }
     }
 }
+
+#[cfg(test)]
+mod fenwick_tree_tests {
+    use super::*;
+
+    impl FenwickTreeConstants for i32 {
+        fn initial() -> Self {
+            0
+        }
+    }
+
+    impl FenwickTreeConstants for i64 {
+        fn initial() -> Self {
+            i64::MIN
+        }
+    }
+
+    #[test]
+    fn test_sum_operations() {
+        const N: usize = 10;
+
+        let sum = |a: i32, b: i32| a + b;
+
+        let mut ft = FenwickTree::new(N, sum);
+
+        for i in 1..=N {
+            ft.update(i, i as i32);
+        }
+
+        for i in 1..=N {
+            for j in i..=N {
+                let sum = (i + j) * (j - i + 1) / 2;
+                assert_eq!(ft.query(j) - ft.query(i - 1), sum as i32);
+            }
+        }
+    }
+
+    #[test]
+    fn test_max_operations() {
+        const N: usize = 10;
+
+        let max = |a: i64, b: i64| a.max(b);
+
+        let mut ft = FenwickTree::new(N, max);
+
+        for i in 1..=N {
+            ft.update(i, i as i64);
+        }
+
+        for i in 1..=N {
+            assert_eq!(ft.query(i), i as i64);
+        }
+    }
+}
