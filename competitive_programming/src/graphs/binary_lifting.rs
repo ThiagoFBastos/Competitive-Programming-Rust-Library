@@ -75,6 +75,7 @@ impl LCA {
      * @param v a vertex of pair to find the lca
      * @return the lca of u and v
      */
+    #[allow(clippy::needless_range_loop)]
     pub fn query(&self, mut u: usize, mut v: usize) -> usize {
         if self.depth[u] > self.depth[v] {
             std::mem::swap(&mut u, &mut v);
