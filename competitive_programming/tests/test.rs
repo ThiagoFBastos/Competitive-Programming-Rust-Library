@@ -1,4 +1,3 @@
-mod bitwise;
 mod dp;
 mod general;
 mod graphs;
