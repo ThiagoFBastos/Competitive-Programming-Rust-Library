@@ -1,4 +1,3 @@
-pub mod binary_lifting;
 pub mod dijkstra;
 pub mod erdos_gallai;
 pub mod floyd_warshall;
